@@ -1,0 +1,19 @@
+services:
+    kinerity.pmrestrictions.functions:
+        class: kinerity\pmrestrictions\core\functions
+        arguments:
+            - '@auth'
+            - '@config'
+            - '@user'
+
+    kinerity.pmrestrictions.listener:
+        class: kinerity\pmrestrictions\event\main_listener
+        arguments:
+            - '@auth'
+            - '@service_container'
+            - '@dbal.conn'
+            - '@user'
+            - '%core.root_path%'
+            - '%core.php_ext%'
+        tags:
+            - { name: event.listener }
